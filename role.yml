@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  namespace: todo-app-ns
+  name: pod-reader
+rules:
+- apiGroups:
+     - ""
+  resources:
+     - pods
+     - deployments
+     - services  
+  verbs: ["get", "create", "list"]
+
