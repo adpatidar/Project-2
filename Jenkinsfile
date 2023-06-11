@@ -49,6 +49,15 @@ pipeline {
 
             }
         }
+        stage('Code Checkout for prod'){
+            when {
+                branch 'prod'
+            }
+            
+            steps{
+                  echo "Code is coming form prod branch"
 
+            }
+        }
     }
 }
