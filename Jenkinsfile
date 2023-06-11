@@ -8,44 +8,21 @@ pipeline {
 
     stages{
         stage('Code Checkout'){
+            when {
+                branch 'dev'
+            }
             steps{
 
                   echo "code is coming..."
             }
         }
-        stage('Code Build'){
-            steps{
-                  echo "building"
-            }
-        }
 
-        stage('Image Push'){
-            steps{
-                 echo "pushing image"
-
+         stage('Cleanup of dev code'){
+            when {
+                branch 'dev'
             }
-        }
-        stage('Manifest Update'){
             steps{
-                   echo "updated manifest file"
-
-            }
-        }
-
-        stage('Deployment on k8s'){
-            steps{
-                   echo "deploy on k8s"
-            }
-        }
-        stage('Manifest Push'){
-            steps{
-                  echo "push back to github"
-            }
-        }
-
-         stage('Cleanup'){
-            steps{
-                  echo "Cleaning"
+                  echo "Cleaning dev branch code"
 
             }
         }
@@ -59,5 +36,14 @@ pipeline {
 
             }
         }
+         stage('Cleanup of prod code'){
+            when {
+                branch 'prod'
+            }
+            steps{
+                  echo "Cleaning prod branch code"
+
+            }
+         }
     }
 }
