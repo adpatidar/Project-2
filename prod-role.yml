@@ -16,7 +16,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: todo-prod
-    namespace: todo-app-ns
+    namespace: todo-app-prod-ns
 roleRef:
   kind: Role
   name: todo-role-prod
