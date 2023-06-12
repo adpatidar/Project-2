@@ -1,5 +1,5 @@
 pipeline {
-    agent { label ' dev-agnet '}
+    agent { label ' k8-master '}
     environment {
        
         Image_Name = "adpatidar/todo-app:$BUILD_NUMBER"
@@ -55,10 +55,9 @@ pipeline {
                 branch 'dev'
             }
             steps{
-                echo "Deploying on dev"
-                 // withKubeConfig([credentialsId: 'todo-dev', serverUrl: 'https://172.31.8.156:6443']) {
-                 // sh "kubectl apply -f deployment.yaml"
-               //}              
+                 withKubeConfig([credentialsId: 'todo-dev', serverUrl: 'https://172.31.8.156:6443']) {
+                 sh "kubectl apply -f deployment.yaml"
+               }              
             }
         }
         
@@ -93,7 +92,7 @@ pipeline {
             steps{
                    sh 'sed -i \'s/todo-app-ns/todo-app-prod-ns/g\' deployment.yaml'
 		   sh 'sed -i \'s/30009/30007/g\' deployment.yaml'
-                   sh 'sed "s+adpatidar/todo-app:.*+adpatidar/todo-app:`cat /home/ubuntu/project-2/workspace/dev-bid`+" deployment.yaml'
+                   sh 'sed -i "s+adpatidar/todo-app:.*+adpatidar/todo-app:`cat /home/ubuntu/project-2/workspace/dev-bid`+" deployment.yaml'
             }
         }
        
@@ -102,10 +101,9 @@ pipeline {
                 branch 'prod'
             }
             steps{
-                 // withKubeConfig([credentialsId: 'todo-prod', serverUrl: 'https://172.31.8.156:6443']) {
-                 // sh "kubectl apply -f deployment.yaml"
-		echo "Deploying on prod"
-               // }              
+                 withKubeConfig([credentialsId: 'todo-prod', serverUrl: 'https://172.31.8.156:6443']) {
+                 sh "kubectl apply -f deployment.yaml"
+		 }              
             }
         }
         
