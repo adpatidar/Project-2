@@ -26,7 +26,16 @@ pipeline {
 
             }
         }
-       
+        stage('trigger prod'){
+           
+           steps{
+                  triggers {
+                    upstream 'prod'
+                }
+
+
+            }
+        }
         stage('Code Checkout for prod'){
             when {
                 branch 'prod'
