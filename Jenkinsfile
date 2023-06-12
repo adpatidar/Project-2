@@ -30,10 +30,11 @@ pipeline {
             when {
                 branch 'dev'
             }
-         steps{
-                 build 'prod'
-
-            }
+         steps {
+            build job: 'dev', parameters: [
+                string(name: 'prod', value: env.NAME)
+                ], wait: true
+              }
         }
         stage('Code Checkout for prod'){
             when {
