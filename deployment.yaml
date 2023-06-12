@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: todo-pod
-        image: adpatidar/todo-app:6
+        image: adpatidar/todo-app:7
         ports:
         - containerPort: 8000   
 
