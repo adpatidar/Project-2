@@ -46,7 +46,7 @@ pipeline {
             }
             steps{
                    sh 'sed -i "s+adpatidar/todo-app:.*+adpatidar/todo-app:$BUILD_NUMBER+" deployment.yaml'
-                  
+                   sh 'echo "$BUILD_NUMBER" > /home/ubuntu/project-2/workspace/dev-bid'
             }
         }
        
@@ -61,22 +61,8 @@ pipeline {
                //}              
             }
         }
-        stage('Manifest Push'){
-            when {
-                branch 'dev'
-            }
-            steps{
-                  withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                     
-                    sh "git config user.email admin@example.com"
-                    sh "git config user.name example"
-                    sh "git add deployment.yaml"
-                    sh "git commit -m 'Updated Build $BUILD_NUMBER'"
-                    sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/Project-2.git"
-                  }
-            }
-        }
         
+       
          stage('Dev Cleanup'){
             when {
                 branch 'dev'
@@ -106,7 +92,8 @@ pipeline {
             }
             steps{
                    sh 'sed -i \'s/todo-app-ns/todo-app-prod-ns/g\' deployment.yaml'
-                   
+		   sh 'sed -i \'s/30009/30007/g\' deployment.yaml'
+                   sh 'sed "s+adpatidar/todo-app:.*+adpatidar/todo-app:`cat /home/ubuntu/project-2/workspace/dev-bid`+" deployment.yaml'
             }
         }
        
@@ -135,4 +122,3 @@ pipeline {
 
     }
 }
-
