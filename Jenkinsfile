@@ -26,7 +26,7 @@ pipeline {
 
             }
         }
-               stage('Code Checkout for prod'){
+               stage('trigger prod'){
             steps{
                   triggers {
                       upstream 'prod'
