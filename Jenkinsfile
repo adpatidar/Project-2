@@ -101,7 +101,7 @@ pipeline {
                 branch 'prod'
             }
             steps{
-                 withKubeConfig([credentialsId: 'todo-prod', serverUrl: 'https://172.31.8.156:6443']) {
+                 withKubeConfig([credentialsId: 'todo-dev', serverUrl: 'https://172.31.8.156:6443']) {
                  sh "kubectl apply -f deployment.yaml"
 		 }              
             }
