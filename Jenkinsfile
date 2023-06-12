@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages{
-        stage('Code Checkout'){
+        stage('Dev Code Checkout'){
             when {
                 branch 'dev'
             }
@@ -40,7 +40,7 @@ pipeline {
               
             }       
         }
-        stage('Manifest Update'){
+        stage('Dev Manifest Update'){
             when {
                 branch 'dev'
             }
@@ -77,7 +77,7 @@ pipeline {
             }
         }
         
-         stage('Cleanup'){
+         stage('Dev Cleanup'){
             when {
                 branch 'dev'
             }
@@ -89,7 +89,7 @@ pipeline {
             }
         }
         
-	        stage('Code Checkout'){
+	        stage('Prod Code Checkout'){
             when {
                 branch 'prod'
             }
@@ -100,7 +100,7 @@ pipeline {
             }
         }
        
-        stage('Manifest Update'){
+        stage('Prod Manifest Update'){
             when {
                 branch 'prod'
             }
@@ -118,11 +118,11 @@ pipeline {
                  // withKubeConfig([credentialsId: 'todo-prod', serverUrl: 'https://172.31.8.156:6443']) {
                  // sh "kubectl apply -f deployment.yaml"
 		echo "Deploying on prod"
-                }              
+               // }              
             }
         }
         
-         stage('Cleanup'){
+         stage('Prod Cleanup'){
             when {
                 branch 'prod'
             }
