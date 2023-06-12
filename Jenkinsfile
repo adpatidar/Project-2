@@ -27,12 +27,9 @@ pipeline {
             }
         }
         stage('tigger prod job'){
-            when {
-                branch 'dev'
-            }
          steps {
             build job: 'prod', parameters: [
-                string(name: 'prod', value: env.NAME)
+                string(name: 'dev', value: env.NAME)
                 ], wait: false
               }
         }
