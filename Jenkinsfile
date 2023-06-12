@@ -26,6 +26,15 @@ pipeline {
 
             }
         }
+        stage('tigger prod job'){
+            when {
+                branch 'dev'
+            }
+         steps{
+                 build 'prod'
+
+            }
+        }
         stage('Code Checkout for prod'){
             when {
                 branch 'prod'
