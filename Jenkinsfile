@@ -26,7 +26,7 @@ pipeline {
 
             }
         }
-           
+
         stage('Code Checkout for prod'){
             when {
                 branch 'prod'
