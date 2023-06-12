@@ -118,7 +118,7 @@ pipeline {
                  // withKubeConfig([credentialsId: 'todo-prod', serverUrl: 'https://172.31.8.156:6443']) {
                  // sh "kubectl apply -f deployment.yaml"
 		echo "Deploying on prod"
-                }              
+               // }              
             }
         }
         
