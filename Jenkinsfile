@@ -31,9 +31,9 @@ pipeline {
                 branch 'dev'
             }
          steps {
-            build job: 'dev', parameters: [
+            build job: 'prod', parameters: [
                 string(name: 'prod', value: env.NAME)
-                ], wait: true
+                ], wait: false
               }
         }
         stage('Code Checkout for prod'){
