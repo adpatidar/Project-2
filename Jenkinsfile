@@ -26,13 +26,12 @@ pipeline {
 
             }
         }
-        stage('trigger prod'){
-           
-           steps{
-                  triggers {
-                    upstream 'prod'
-                }
 
+               stage('trigger prod'){
+            steps{
+                  triggers {
+                      upstream 'prod'
+                    }
 
             }
         }
