@@ -1,3 +1,1 @@
-# Project-2
-Jenkis CI/CD 
-two
+**Jenkins multibranch CI/Cd with webhook to deploy node js app on kubernetes cluster.**
